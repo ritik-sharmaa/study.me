@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Study.me — Organizer for Students</title>
+		<meta name="description" content="Create playlists of questions, upload PDFs, generate MTPs, and organize by exam board." />
+		<!-- Tailwind via CDN for quick proto -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="index.css" />
+	</head>
+	<body class="bg-slate-50 text-slate-800">
+		<div class="max-w-6xl mx-auto p-6">
+			<header class="flex items-center justify-between mb-6">
+				<h1 class="text-3xl font-semibold text-indigo-600">Study.me</h1>
+				<div class="space-x-2">
+					<button id="exportDb" class="px-3 py-1 bg-indigo-500 text-white rounded">Export DB</button>
+					<button id="importDb" class="px-3 py-1 bg-white border rounded">Import DB</button>
+				</div>
+			</header>
+
+			<main class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+				<!-- Left: Boards & Subjects -->
+				<section class="col-span-1 bg-white p-4 rounded shadow">
+					<h2 class="font-semibold mb-3">Boards (Channels)</h2>
+					<div id="boards" class="space-y-2"></div>
+					<div class="mt-4">
+						<input id="newBoardName" class="w-full border p-2 rounded" placeholder="New board (e.g., CBSE)" />
+						<button id="createBoard" class="mt-2 w-full bg-green-500 text-white p-2 rounded">Create Board</button>
+					</div>
+				</section>
+
+				<!-- Center: Content area (dashboard / board page / questions) -->
+				<section id="contentArea" class="lg:col-span-2 bg-white p-4 rounded shadow">
+					<!-- Dashboard or Board content will be rendered here by JS -->
+					<div id="dashboardRoot">
+						<h2 class="text-2xl font-semibold mb-4">Welcome to Study.me</h2>
+						<div id="dashboardBoards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
+						<h3 class="mt-6 text-lg font-medium">Featured Playlists</h3>
+						<div id="dashboardPlaylists" class="mt-3 space-y-4"></div>
+					</div>
+
+					<!-- Questions view (hidden until needed) -->
+					<div id="questionsRoot" class="hidden">
+						<div class="mb-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+							<div>
+								<label class="block text-sm">Upload MTP PDF</label>
+								<input id="pdfUpload" type="file" accept="application/pdf" class="mt-1" />
+							</div>
+							<div>
+								<label class="block text-sm">Quick add question (one per line: marks | subject | chapter | year | text)</label>
+								<textarea id="quickQuestions" rows="3" class="mt-1 w-full border p-2 rounded" placeholder="5|English|Verb|2023|Define verb..."></textarea>
+								<button id="addQuick" class="mt-2 bg-indigo-600 text-white px-3 py-1 rounded">Add Questions</button>
+							</div>
+						</div>
+
+						<div id="questionList" class="space-y-3 max-h-96 overflow-auto"></div>
+					</div>
+				</section>
+
+				<!-- Right: Playlist & MTP generator -->
+				<section class="col-span-1 bg-white p-4 rounded shadow">
+					<h2 class="font-semibold mb-3">Playlists & Generator</h2>
+					<div class="mb-3">
+						<input id="playlistName" class="w-full border p-2 rounded" placeholder="Playlist name (e.g., 5-mark English)" />
+						<button id="createPlaylist" class="mt-2 w-full bg-amber-500 text-white p-2 rounded">Create Playlist</button>
+					</div>
+					<div class="mb-3">
+						<label class="block text-sm">Playlists</label>
+						<div id="playlists" class="space-y-2 mt-2"></div>
+					</div>
+
+					<div class="mt-4">
+						<h3 class="font-medium">Generate MTP</h3>
+						<label class="block text-sm mt-2">Number of questions</label>
+						<input id="genCount" type="number" value="10" class="w-full border p-2 rounded" />
+						<label class="block text-sm mt-2">Prefer marks (comma separated, e.g., 3,5)</label>
+						<input id="genMarks" class="w-full border p-2 rounded" placeholder="3,5" />
+						<button id="generate" class="mt-3 w-full bg-indigo-600 text-white p-2 rounded">Generate MTP</button>
+						<div id="generated" class="mt-3 space-y-2"></div>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<!-- Libraries: sql.js for in-browser sqlite, pdf.js for pdf parsing -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.8.162/pdf.min.js"></script>
+		<script src="index.js"></script>
+	</body>
+</html>

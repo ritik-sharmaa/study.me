@@ -1,0 +1,29 @@
+/* Minimal custom styles; Tailwind handles most UI */
+body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+.question-card { border-left: 4px solid #6366f1; }
+.scroll-area { scrollbar-width: thin; }
+
+/* Playlist card styles */
+.playlist-card { border: 1px solid rgba(99,102,241,0.12); box-shadow: 0 6px 18px rgba(99,102,241,0.06); }
+.playlist-header { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.playlist-items { border-top: 1px dashed rgba(15,23,42,0.04); padding-top:8px; margin-top:8px; }
+.playlist-item { background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(248,250,252,0.6)); border-left: 3px solid #f59e0b; }
+.playlist-meta { color:#475569; font-size:0.9rem; }
+
+/* Badges */
+.meta-badges { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.badge { font-size:0.75rem; padding:4px 8px; border-radius:9999px; background:#eef2ff; color:#3730a3; }
+.badge.alt { background:#eff6ff; color:#1e40af; }
+.badge.warn { background:#fff7ed; color:#b45309; }
+.badge.gray { background:#f1f5f9; color:#475569; }
+
+/* Dashboard/thumbnail styles */
+.channel-card { background: linear-gradient(180deg, #fff, #fbfdff); border-radius:12px; padding:12px; box-shadow: 0 8px 20px rgba(2,6,23,0.04); }
+.channel-cover { height:120px; border-radius:8px; background-size:cover; background-position:center; }
+.channel-title { font-weight:600; color:#0f172a; }
+.playlist-thumb { width:220px; min-width:220px; height:120px; border-radius:8px; background-size:cover; background-position:center; }
+.horizontal-scroll { display:flex; gap:12px; overflow:auto; padding-bottom:8px; }
+.horizontal-scroll::-webkit-scrollbar { height:8px; }
+.horizontal-scroll::-webkit-scrollbar-thumb { background: rgba(15,23,42,0.12); border-radius:999px; }
+
+
